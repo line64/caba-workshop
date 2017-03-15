@@ -1,0 +1,4 @@
+https://github.com/AWSinAction/lambda
+aws s3 cp lambda.zip s3://$LambdaS3Bucket/lambda.zip
+aws cloudformation create-stack --stack-name lambda-resize --template-body file://template.json --capabilities CAPABILITY_IAM --parameters ParameterKey=ImageS3Bucket,ParameterValue=$ImageS3Bucket ParameterKey=LambdaS3Bucket,ParameterValue=$LambdaS3Bucket
+aws cloudformation describe-stacks --stack-name lambda-resize --query Stacks[].StackStatus
